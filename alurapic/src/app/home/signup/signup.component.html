@@ -1,0 +1,32 @@
+<h4 class="text-center"> Register to embrace a new world!</h4>
+<form [formGroup]="cadastroForm" class="form mt-4" (submit)="signup()">
+    <div class="form-group">
+        <input formControlName="email" placeholder="email" #inputEmail class="form-control" autofocus >
+        <app-vmessage text="Email required" *ngIf="cadastroForm.get('email').errors?.required"></app-vmessage>
+        <app-vmessage text="Invalid Email" *ngIf="cadastroForm.get('email').errors?.email"></app-vmessage>
+    </div>
+    <div class="form-group">
+        <input formControlName="fullName" placeholder="full name" class="form-control">
+        <app-vmessage text="fullName is required" *ngIf="cadastroForm.get('fullName').errors?.required"></app-vmessage>
+        <app-vmessage text="Minimum length is 2" *ngIf="cadastroForm.get('fullName').errors?.minlength"></app-vmessage>
+        <app-vmessage text="Maximum length is 40" *ngIf="cadastroForm.get('fullName').errors?.maxlength"></app-vmessage>
+    </div>
+    <div class="form-group">
+        <input formControlName="userName" placeholder="user name" class="form-control">
+        <app-vmessage text="UserName is required" *ngIf="cadastroForm.get('userName').errors?.required"></app-vmessage>
+        <app-vmessage text="Minimum length is 2" *ngIf="cadastroForm.get('userName').errors?.minlength"></app-vmessage>
+        <app-vmessage text="Maximum length is 30" *ngIf="cadastroForm.get('userName').errors?.maxlength"></app-vmessage>
+        <app-vmessage text="Must be lower case" *ngIf="cadastroForm.get('userName').errors?.pattern"></app-vmessage>
+    </div>
+    <div class="form-group">
+        <input formControlName="password" type="password" placeholder="password" class="form-control">
+        <app-vmessage text="UserName is required" *ngIf="cadastroForm.get('password').errors?.required"></app-vmessage>
+        <app-vmessage text="Minimum length is 8" *ngIf="cadastroForm.get('password').errors?.minlength"></app-vmessage>
+        <app-vmessage text="Maximum length is 14" *ngIf="cadastroForm.get('password').errors?.maxlength"></app-vmessage>
+    </div>
+    <button class="btn btn-primary btn-block" [disabled] = "cadastroForm.invalid">Register</button>
+
+    <p>Already a user?
+        <a [routerLink]="['']"> Sign In!</a>
+    </p>
+</form>
